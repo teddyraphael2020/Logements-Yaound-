@@ -73,4 +73,65 @@ function exportData(){const blob=new Blob([JSON.stringify({listings,reports},nul
 function resetDemo(){if(!confirm('Supprimer toutes les annonces et tous les signalements ajoutés dans ce navigateur ?'))return;listings=[];reports=[];save();renderListings();showToast('Données locales réinitialisées.')}
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.show').forEach(m=>closeModal(m.id))});document.getElementById('year').textContent=new Date().getFullYear();load();renderListings();
 </script>
+<!-- ================================= -->
+<!-- CONNEXION DE IMMO+ À SUPABASE -->
+<!-- ================================= -->
+
+<!-- 1. Bibliothèque officielle Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    // 2. INFORMATIONS DE TON PROJET SUPABASE
+
+    const SUPABASE_URL = "COLLE_ICI_TON_URL";
+    const SUPABASE_ANON_KEY = "COLLE_ICI_TA_CLE_PUBLIQUE";
+
+    // 3. CRÉATION DE LA CONNEXION
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+    // 4. TEST DE LA CONNEXION À LA BASE DE DONNÉES
+
+    async function testerConnexion() {
+
+        const resultat = document.getElementById("statut-connexion");
+
+        resultat.textContent = "Connexion en cours...";
+
+        const { data, error } = await supabaseClient
+            .from("logements")
+            .select("*")
+            .limit(1);
+
+        if (error) {
+            console.error("Erreur Supabase :", error);
+
+            resultat.textContent =
+                "Échec de connexion : " + error.message;
+
+        } else {
+            console.log("Connexion réussie !");
+            console.log("Données reçues :", data);
+
+            resultat.textContent =
+                "Connexion réussie à la base de données Immo+ !";
+        }
+    }
+</script>
+
+<!-- 5. BOUTON DE TEST -->
+
+<div style="padding: 15px;">
+    <button onclick="testerConnexion()">
+        Tester la connexion Supabase
+    </button>
+
+    <p id="statut-connexion">
+        En attente du test...
+    </p>
+</div>
+
 </body></html>

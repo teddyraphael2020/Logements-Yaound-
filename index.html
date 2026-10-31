@@ -133,5 +133,146 @@ document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if
         En attente du test...
     </p>
 </div>
+<!-- SUPABASE : bibliothèque -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+
+const SUPABASE_URL = "COLLE_ICI_TON_URL_SUPABASE";
+const SUPABASE_ANON_KEY = "COLLE_ICI_TA_CLE_PUBLIQUE";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+
+/* ==========================================
+   2. FONCTION D'INSCRIPTION
+   ========================================== */
+
+async function inscrireUtilisateur(nom, email, motDePasse, typeCompte) {
+
+  const bouton = document.getElementById("boutonInscription");
+
+  bouton.disabled = true;
+  bouton.textContent = "Inscription en cours...";
+
+  const { data, error } = await supabaseClient.auth.signUp({
+
+    email: email,
+    password: motDePasse,
+
+    options: {
+      data: {
+        nom_complet: nom,
+        type_compte: typeCompte
+      },
+
+      emailRedirectTo: "COLLE_ICI_TON_URL_GITHUB_PAGES"
+    }
+
+  });
+
+  bouton.disabled = false;
+  bouton.textContent = "Créer mon compte";
+
+  if (error) {
+    alert("Erreur d'inscription : " + error.message);
+    return;
+  }
+
+  alert(
+    "Inscription envoyée ! Vérifie ta boîte e-mail pour confirmer ton compte."
+  );
+
+  document.getElementById("formInscription").reset();
+}
+
+
+
+
+   
+<section id="inscription">
+  <h2>Créer un compte Immo+</h2>
+
+  <form id="formInscription">
+
+    <label>Nom complet</label>
+    <input
+      type="text"
+      id="nomInscription"
+      required
+      placeholder="Ton nom complet"
+    >
+
+    <label>Adresse e-mail</label>
+    <input
+      type="email"
+      id="emailInscription"
+      required
+      placeholder="exemple@email.com"
+    >
+
+    <label>Mot de passe</label>
+    <input
+      type="password"
+      id="motDePasseInscription"
+      minlength="8"
+      required
+      placeholder="Au moins 8 caractères"
+    >
+
+    <label>Type de compte</label>
+    <select id="typeCompteInscription" required>
+      <option value="chercheur">Chercheur de logement</option>
+      <option value="proprietaire">Propriétaire</option>
+      <option value="agent">Agent immobilier</option>
+    </select>
+
+    <button type="submit" id="boutonInscription">
+      Créer mon compte
+    </button>
+
+  </form>
+</section>
+    
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  const formulaire = document.getElementById("formInscription");
+
+  if (!formulaire) return;
+
+  formulaire.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const nom = document.getElementById("nomInscription").value.trim();
+    const email = document.getElementById("emailInscription").value.trim();
+    const motDePasse = document.getElementById("motDePasseInscription").value;
+    const typeCompte = document.getElementById("typeCompteInscription").value;
+
+    if (motDePasse.length < 8) {
+      alert("Ton mot de passe doit contenir au moins 8 caractères.");
+      return;
+    }
+
+    await inscrireUtilisateur(
+      nom,
+      email,
+      motDePasse,
+      typeCompte
+    );
+
+  });
+
+});
+
+</script>
+</body>
+</html>
+
 
 </body></html>

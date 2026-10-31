@@ -139,8 +139,8 @@ document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if
 <script>
 
 
-const SUPABASE_URL = "COLLE_ICI_TON_URL_SUPABASE";
-const SUPABASE_ANON_KEY = "COLLE_ICI_TA_CLE_PUBLIQUE";
+const SUPABASE_URL = "ckpcapndbsjmkhshyowg";
+const SUPABASE_ANON_KEY = "sb_publishable_9L4R1Rvb2mHg1xevvKoP2Q_G7CFdmZm";
 
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
@@ -148,9 +148,28 @@ const supabaseClient = window.supabase.createClient(
 );
 
 
-/* ==========================================
-   2. FONCTION D'INSCRIPTION
-   ========================================== */
+// 2. Nouvelle fonction d'inscription
+async function inscrireUtilisateur(nom, email, motDePasse, typeCompte) {
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: motDePasse,
+    options: {
+      data: {
+        nom_complet: nom,
+        type_compte: typeCompte
+      },
+      emailRedirectTo: "TON_URL_GITHUB_PAGES"
+    
+  });
+
+  if (error) {
+    alert("Erreur : " + error.message);
+    return;
+  }
+
+  alert("Inscription envoyée ! Vérifie tes e-mails.");
+}
 
 async function inscrireUtilisateur(nom, email, motDePasse, typeCompte) {
 

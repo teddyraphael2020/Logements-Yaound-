@@ -129,7 +129,7 @@
     const DB_FIELDS = {
       id:'identifiant', created:'Créé_à', city:'Ville', description:'Description',
       area:'Quartier', price:'Prix', type:'Type de logement', status:'Statut',
-      owner:'propriétaire_id', photos:'photos', updated:'mis à jour_à'
+      owner:'Propriétaire _id', photos:'photos', updated:'mis à jour_à'
     };
     const STORAGE_BUCKET = 'logements-photos';
     const MAX_PHOTOS = 5;
@@ -228,7 +228,7 @@
           'Type de logement':$('listingType').value,
           'Description':$('listingDescription').value.trim(),
           'Statut':'disponible',
-          'propriétaire_id':currentUser.id,
+          'Propriétaire _id':currentUser.id,
           'photos':photoUrls
         };
         const {error}=await supabaseClient.from('logements').insert(payload);

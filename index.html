@@ -22,6 +22,18 @@
     .modal{position:fixed;inset:0;background:#10231dcc;z-index:30;display:none;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.modalbox{background:white;border-radius:21px;width:min(650px,100%);max-height:92vh;overflow:auto;padding:23px;box-shadow:0 24px 80px #0004}.modalhead{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:17px}.modalhead h2{font-size:23px;margin:0}.smallmuted{font-size:12px;color:var(--muted)}.close{width:38px;height:38px;border:0;border-radius:12px;background:#edf3ee;color:var(--green-dark);font-size:22px;cursor:pointer;transition:.15s}.close:hover{background:#dcebe0;transform:rotate(4deg)}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.notice{padding:12px;border-radius:11px;background:#fff6e8;border:1px solid #f1dfbf;color:#77501d;font-size:12px;margin:13px 0}.form-actions{display:flex;gap:9px;margin-top:15px}.form-actions>*{flex:1}.tabs{display:flex;gap:8px;margin-bottom:16px;padding:5px;border-radius:12px;background:#f0f4f0}.tab{flex:1;border:0;border-radius:9px;padding:10px;background:transparent;color:var(--muted);font-weight:800;cursor:pointer}.tab.active{background:white;color:var(--green);box-shadow:0 2px 8px #153b2910}.auth-pane{display:none}.auth-pane.active{display:block}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#173d2d;color:white;padding:12px 17px;border-radius:12px;z-index:60;display:none;box-shadow:var(--shadow);max-width:92%;font-size:13px}.toast.show{display:block}.status{font-size:12px;margin-top:10px;color:var(--muted);min-height:18px}.status.error{color:#b33b32}.status.success{color:var(--green)}
     @media(max-width:850px){.searchbox{grid-template-columns:1fr 1fr}.searchbox .btn{width:100%}.cards{grid-template-columns:repeat(2,1fr)}.trustgrid{grid-template-columns:1fr}.proband{grid-template-columns:1fr}.footergrid{grid-template-columns:1fr 1fr}.footergrid>div:first-child{grid-column:1/-1}}
     @media(max-width:580px){.topbar .wrap{font-size:10px}.navinner{height:64px}.brand{font-size:18px}.brandmark{width:37px;height:37px}.nav-actions .btn{padding:9px 10px;font-size:11px;min-height:38px}.choice-screen{min-height:calc(100vh - 100px);padding:34px 0}.choice-grid{grid-template-columns:1fr;gap:13px}.choice-card{min-height:175px;padding:21px}.choice-inner h1{letter-spacing:-1px}.searchbox{grid-template-columns:1fr}.section{padding:28px 0}.section-head{align-items:flex-start;flex-direction:column}.cards{grid-template-columns:1fr}.photo{height:215px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.modalbox{padding:18px}.footergrid{grid-template-columns:1fr}.footergrid>div:first-child{grid-column:auto}.form-actions{flex-direction:column}}
+
+    .photo-picker{border:2px dashed #a9cbb4;border-radius:15px;padding:18px;background:#f7fbf8;text-align:center}
+    .photo-picker input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+    .photo-picker label{display:flex;min-height:54px;align-items:center;justify-content:center;gap:10px;border-radius:12px;background:#e8f3ec;color:#104b37;font-weight:850;cursor:pointer;padding:12px}
+    .photo-picker label:focus-within,.photo-picker label:focus{outline:3px solid #f1b65e;outline-offset:3px}
+    .photo-help{font-size:12px;color:#68776f;margin:9px 0 0}
+    .preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+    .preview-grid img{width:100%;height:92px;object-fit:cover;border-radius:10px}
+    .dashboard-list{display:grid;gap:10px}.dashboard-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}
+    .legal-copy{font-size:13px;color:#53645a}.legal-copy h3{color:var(--ink);margin:18px 0 6px}
+    @media(max-width:580px){.photo-picker{padding:12px}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dashboard-item{align-items:flex-start;flex-direction:column}}
+
   </style>
 </head>
 <body>
@@ -41,7 +53,7 @@
       </div></section>
       <section class="trust"><div class="wrap trustgrid"><div class="trustitem"><div class="trusticon">⌕</div><div><strong>Recherche pratique</strong><p>Filtrez selon le quartier, le type et le budget.</p></div></div><div class="trustitem"><div class="trusticon">☎</div><div><strong>Contact annonceur</strong><p>Connectez-vous pour accéder aux coordonnées disponibles.</p></div></div><div class="trustitem"><div class="trusticon">⚑</div><div><strong>Restez vigilant</strong><p>Visitez le logement et vérifiez les documents avant tout paiement.</p></div></div></div></section>
       <section class="section"><div class="wrap"><div class="proband"><div><span class="eyebrow" style="background:#ffffff20;color:#fff">Espace annonceurs</span><h2>Vous avez un logement à louer ?</h2><p>Publiez votre annonce sur Immo+. Pendant la phase de lancement, la publication est gratuite. Les abonnements sont reportés.</p><div style="margin-top:17px"><button class="btn" style="background:white;color:var(--green-dark)" onclick="openPublish()">Publier mon logement →</button></div></div><div class="proprice"><span>PHASE DE LANCEMENT</span><strong>Gratuit</strong><span>Les abonnements ne sont pas activés.</span><button class="btn" onclick="showToast('Les abonnements sont reportés. La publication reste gratuite pendant le lancement.')">En savoir plus</button></div></div></div></section>
-      <footer class="footer"><div class="wrap"><div class="footergrid"><div><a class="brand" href="#accueil" style="color:white" onclick="goHome(event)"><span class="brandmark">⌂</span><span>Immo<em style="color:#94d4ad">+</em></span></a><p>Une plateforme de découverte de logements, pensée pour Yaoundé.</p></div><div><h4>Explorer</h4><a href="#annonces">Voir les annonces</a><a href="#" onclick="openPublish();return false">Publier un logement</a></div><div><h4>Conseil</h4><p>Vérifiez l'identité de l'annonceur et visitez le logement avant tout paiement.</p><button class="btn ghost small" onclick="openAuth()">Mon compte</button></div></div><div class="copyright"><span>© <span id="year"></span> Immo+ — LogisYaoundé</span><span>Plateforme en phase de lancement.</span></div></div></footer>
+      <footer class="footer"><div class="wrap"><div class="footergrid"><div><a class="brand" href="#accueil" style="color:white" onclick="goHome(event)"><span class="brandmark">⌂</span><span>Immo<em style="color:#94d4ad">+</em></span></a><p>Une plateforme de découverte de logements, pensée pour Yaoundé.</p></div><div><h4>Explorer</h4><a href="#annonces">Voir les annonces</a><a href="#" onclick="openPublish();return false">Publier un logement</a></div><div><h4>Conseil</h4><p>Vérifiez l'identité de l'annonceur et visitez le logement avant tout paiement.</p><button class="btn ghost small" onclick="openAuth()">Mon compte</button><button class="btn ghost small" style="margin-top:8px" onclick="openLegal()">Confidentialité et règles</button></div></div><div class="copyright"><span>© <span id="year"></span> Immo+ — LogisYaoundé</span><span>Plateforme en phase de lancement.</span></div></div></footer>
     </div>
   </main>
 
@@ -52,8 +64,55 @@
   </div></div>
 
   <div class="modal" id="listingModal" role="dialog" aria-modal="true" aria-labelledby="listingTitle"><div class="modalbox"><div class="modalhead"><div><h2 id="listingTitle">Publier un logement</h2><div class="smallmuted">Publication gratuite pendant le lancement.</div></div><button class="close" onclick="closeModal('listingModal')" aria-label="Fermer">×</button></div>
-    <form id="listingForm"><div class="formgrid"><div class="field"><label for="listingTitleInput">Titre de l'annonce *</label><input id="listingTitleInput" required placeholder="Studio moderne à louer"></div><div class="field"><label for="listingType">Type de logement *</label><select id="listingType" required><option value="">Choisir</option><option>Chambre</option><option>Studio</option><option>Appartement</option><option>Maison</option></select></div><div class="field"><label for="listingArea">Quartier *</label><input id="listingArea" required placeholder="Ex. : Mvan"></div><div class="field"><label for="listingPrice">Loyer mensuel (FCFA) *</label><input id="listingPrice" type="number" min="1" required placeholder="75000"></div><div class="field"><label for="listingCity">Ville *</label><input id="listingCity" value="Yaoundé" required></div><div class="field"><label for="listingRooms">Nombre de pièces</label><select id="listingRooms"><option>1</option><option>2</option><option>3</option><option>4+</option></select></div><div class="field full"><label for="listingDescription">Description *</label><textarea id="listingDescription" rows="4" required placeholder="Décrivez le logement, ses équipements et les conditions."></textarea></div></div><div class="notice">Publiez uniquement un logement que vous êtes autorisé à proposer. Les annonces seront soumises aux règles de validation de la base de données.</div><label style="display:flex;gap:9px;align-items:flex-start;font-size:12px;margin:12px 0"><input id="listingConsent" type="checkbox" required style="margin-top:3px"> Je confirme être autorisé à publier cette annonce et que les informations sont exactes.</label><button class="btn block" type="submit" id="listingSubmit">Envoyer l'annonce</button><p class="status" id="listingFormStatus" aria-live="polite"></p></form>
+    <form id="listingForm"><div class="formgrid"><div class="field"><label for="listingTitleInput">Titre de l'annonce *</label><input id="listingTitleInput" required placeholder="Studio moderne à louer"></div><div class="field"><label for="listingType">Type de logement *</label><select id="listingType" required><option value="">Choisir</option><option>Chambre</option><option>Studio</option><option>Appartement</option><option>Maison</option></select></div><div class="field"><label for="listingArea">Quartier *</label><input id="listingArea" required placeholder="Ex. : Mvan"></div><div class="field"><label for="listingPrice">Loyer mensuel (FCFA) *</label><input id="listingPrice" type="number" min="1" required placeholder="75000"></div><div class="field"><label for="listingCity">Ville *</label><input id="listingCity" value="Yaoundé" required></div><div class="field"><label for="listingRooms">Nombre de pièces</label><select id="listingRooms"><option>1</option><option>2</option><option>3</option><option>4+</option></select></div><div class="field full"><label for="listingDescription">Description *</label><textarea id="listingDescription" rows="4" required placeholder="Décrivez le logement, ses équipements et les conditions."></textarea></div></div>
+      <div class="field full">
+        <label>Photos du logement (jusqu'à 5)</label>
+        <div class="photo-picker">
+          <input id="listingPhotos" type="file" accept="image/*" multiple>
+          <label for="listingPhotos">📷 Choisir des photos depuis mon téléphone</label>
+          <p class="photo-help" id="photoSelection">Aucune photo sélectionnée. Vous pouvez aussi publier sans photo.</p>
+          <div class="preview-grid" id="photoPreview"></div>
+        </div>
+      </div>
+      <div class="notice">Publiez uniquement un logement que vous êtes autorisé à proposer. Les annonces seront soumises aux règles de validation de la base de données.</div><label style="display:flex;gap:9px;align-items:flex-start;font-size:12px;margin:12px 0"><input id="listingConsent" type="checkbox" required style="margin-top:3px"> Je confirme être autorisé à publier cette annonce et que les informations sont exactes.</label><button class="btn block" type="submit" id="listingSubmit">Envoyer l'annonce</button><p class="status" id="listingFormStatus" aria-live="polite"></p></form>
   </div></div>
+
+  <div class="modal" id="dashboardModal" role="dialog" aria-modal="true" aria-labelledby="dashboardTitle">
+    <div class="modalbox">
+      <div class="modalhead"><div><h2 id="dashboardTitle">Mon tableau de bord</h2><div class="smallmuted" id="dashboardIdentity">Vos annonces et votre compte.</div></div><button class="close" onclick="closeModal('dashboardModal')" aria-label="Fermer">×</button></div>
+      <div class="form-actions"><button class="btn secondary" onclick="loadDashboard()">Actualiser</button><button class="btn ghost" onclick="openSettings()">⚙ Paramètres</button><button class="btn ghost" onclick="signOut()">Déconnexion</button></div>
+      <h3>Mes annonces</h3><div class="dashboard-list" id="dashboardListings"><p class="smallmuted">Chargement…</p></div>
+      <p class="status" id="dashboardStatus" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modalbox">
+      <div class="modalhead"><div><h2 id="settingsTitle">Paramètres du compte</h2><div class="smallmuted">Gérez les informations de connexion de votre compte.</div></div><button class="close" onclick="closeModal('settingsModal')" aria-label="Fermer">×</button></div>
+      <div class="field"><label>Adresse e-mail du compte</label><input id="settingsEmail" type="email" readonly></div>
+      <form id="passwordForm" style="margin-top:16px">
+        <div class="field"><label for="newPassword">Nouveau mot de passe</label><input id="newPassword" type="password" minlength="8" required autocomplete="new-password" placeholder="8 caractères minimum"></div>
+        <button class="btn block" style="margin-top:12px" id="passwordSave">Modifier le mot de passe</button>
+        <p class="status" id="settingsStatus" aria-live="polite"></p>
+      </form>
+      <p class="smallmuted">La modification de l'adresse e-mail et la suppression du compte nécessitent une procédure sécurisée qui sera ajoutée après validation des règles de sécurité Supabase.</p>
+      <button class="btn secondary block" onclick="closeModal('settingsModal');openDashboard()" style="margin-top:10px">Retour au tableau de bord</button>
+    </div>
+  </div>
+
+  <div class="modal" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+    <div class="modalbox"><div class="modalhead"><h2 id="legalTitle">Confidentialité et règles d'utilisation</h2><button class="close" onclick="closeModal('legalModal')" aria-label="Fermer">×</button></div>
+      <div class="legal-copy">
+        <p><strong>Version de lancement — document à compléter avant ouverture publique.</strong></p>
+        <h3>Données utilisées</h3><p>Immo+ utilise les informations nécessaires à la création du compte, à la publication et à la consultation des annonces. Les données sont hébergées dans le projet Supabase associé au site.</p>
+        <h3>Photos et annonces</h3><p>Ne publiez que des photos et informations que vous êtes autorisé à partager. Évitez d'inclure des documents d'identité, coordonnées sensibles ou images de personnes sans leur accord.</p>
+        <h3>Vos droits et demandes</h3><p>Pour demander la correction ou la suppression de vos informations, contactez l'équipe Immo+ par le canal de contact qui sera ajouté avant le lancement public.</p>
+        <h3>Règles de publication</h3><p>Les annonces doivent être exactes, concerner un logement réellement disponible et être publiées avec l'autorisation du propriétaire ou de son représentant. Les annonces trompeuses peuvent être retirées.</p>
+        <p>Ce texte est un brouillon informatif, pas un avis juridique. Les coordonnées du responsable, les durées de conservation et les modalités locales de traitement doivent être complétées et validées avant lancement.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- Bibliothèque officielle Supabase : une seule inclusion -->
@@ -67,7 +126,14 @@
 
     // Noms de colonnes attendus dans la table logements.
     // À comparer avec les noms exacts de la table Supabase avant la première publication.
-    const DB_FIELDS = { id:'id', city:'ville', area:'quartier', price:'prix', type:'type_logement', description:'description', status:'statut', owner:'proprietaire_id' };
+    const DB_FIELDS = {
+      id:'identifiant', created:'Créé_à', city:'Ville', description:'Description',
+      area:'Quartier', price:'Prix', type:'Type de logement', status:'Statut',
+      owner:'propriétaire_id', photos:'photos', updated:'mis à jour_à'
+    };
+    const STORAGE_BUCKET = 'logements-photos';
+    const MAX_PHOTOS = 5;
+    const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
     let allRows = [];
     let activeQuick = '';
     let currentUser = null;
@@ -86,25 +152,129 @@
     function setStatus(id,message,type=''){const el=$(id);el.textContent=message;el.className='status'+(type?' '+type:'')}
     function setBusy(buttonId,busy,label){const b=$(buttonId);b.disabled=busy;if(label)b.textContent=busy?label:b.dataset.originalLabel||b.textContent;if(!b.dataset.originalLabel)b.dataset.originalLabel=b.textContent}
 
-    async function refreshUser(){const {data,error}=await supabaseClient.auth.getUser();if(error){console.warn('Lecture de session:',error.message)}currentUser=data?.user||null;const button=$('accountButton');button.textContent=currentUser?'Mon compte':'Se connecter';button.onclick=currentUser?signOut:()=>openAuth();}
+    async function refreshUser(){const {data,error}=await supabaseClient.auth.getUser();if(error){console.warn('Lecture de session:',error.message)}currentUser=data?.user||null;const button=$('accountButton');button.textContent=currentUser?'Mon tableau de bord':'Se connecter';button.title=currentUser?'Ouvrir votre tableau de bord':'Connectez-vous pour accéder au tableau de bord et aux paramètres';button.onclick=currentUser?openDashboard:()=>openAuth();}
     async function signOut(){const {error}=await supabaseClient.auth.signOut();if(error){showToast('Déconnexion impossible : '+error.message);return}currentUser=null;await refreshUser();showToast('Vous êtes déconnecté.');}
 
     $('loginForm').addEventListener('submit',async event=>{event.preventDefault();setStatus('loginStatus','Connexion en cours…');$('loginSubmit').disabled=true;const {data,error}=await supabaseClient.auth.signInWithPassword({email:$('loginEmail').value.trim(),password:$('loginPassword').value});$('loginSubmit').disabled=false;if(error){setStatus('loginStatus',error.message,'error');return}currentUser=data.user;await refreshUser();closeModal('authModal');$('loginForm').reset();setStatus('loginStatus','');showToast('Connexion réussie.');if(document.body.classList.contains('search-mode'))loadListings()});
     $('signupForm').addEventListener('submit',async event=>{event.preventDefault();setStatus('signupStatus','Création du compte…');$('signupSubmit').disabled=true;const {data,error}=await supabaseClient.auth.signUp({email:$('signupEmail').value.trim(),password:$('signupPassword').value,options:{data:{nom_complet:$('signupName').value.trim(),type_compte:$('signupType').value},emailRedirectTo:'https://teddyraphael2020.github.io/Logements-Yaound-/'}});$('signupSubmit').disabled=false;if(error){setStatus('signupStatus',error.message,'error');return}if(data.session){currentUser=data.user;await refreshUser();closeModal('authModal');showToast('Compte créé et connecté.')}else{setStatus('signupStatus','Inscription envoyée. Vérifiez votre boîte e-mail pour confirmer votre adresse.','success')} $('signupForm').reset()});
 
     function valueFrom(row,key,fallbacks=[]){if(row[key]!==undefined&&row[key]!==null)return row[key];for(const k of fallbacks)if(row[k]!==undefined&&row[k]!==null)return row[k];return ''}
-    function normalizeRow(row){return {id:valueFrom(row,DB_FIELDS.id,['id']),title:valueFrom(row,'titre',['nom','type_logement','type_de_logement']),city:valueFrom(row,DB_FIELDS.city,['ville'])||'Yaoundé',area:valueFrom(row,DB_FIELDS.area,['quartier']),price:valueFrom(row,DB_FIELDS.price,['prix']),type:valueFrom(row,DB_FIELDS.type,['type_de_logement','type logement','type']),description:valueFrom(row,DB_FIELDS.description,['description']),status:valueFrom(row,DB_FIELDS.status,['statut']),owner:valueFrom(row,DB_FIELDS.owner,['owner_id','proprietaire_id']),created:valueFrom(row,DB_FIELDS.created,['created_at','cree_le'])}}
+    function normalizePhotos(value){
+      if(Array.isArray(value)) return value.map(p=>typeof p==='string'?p:(p?.url||'')).filter(Boolean);
+      if(typeof value==='string'){try{return normalizePhotos(JSON.parse(value))}catch{return []}}
+      return [];
+    }
+    function normalizeRow(row){
+      const photos=normalizePhotos(row[DB_FIELDS.photos]);
+      return {
+        id:row[DB_FIELDS.id], title:row[DB_FIELDS.type]||'Logement à louer',
+        city:row[DB_FIELDS.city]||'Yaoundé', area:row[DB_FIELDS.area]||'',
+        price:row[DB_FIELDS.price]||0, type:row[DB_FIELDS.type]||'',
+        description:row[DB_FIELDS.description]||'', status:row[DB_FIELDS.status]||'',
+        owner:row[DB_FIELDS.owner]||'', photos, created:row[DB_FIELDS.created]||''
+      };
+    }
     async function loadListings(){setStatus('listingStatus','Chargement des annonces…');$('listingGrid').innerHTML='';try{const {data,error}=await supabaseClient.from('logements').select('*');if(error)throw error;allRows=(data||[]).map(normalizeRow);renderListings();setStatus('listingStatus','');}catch(error){console.error('Chargement logements:',error);setStatus('listingStatus','Impossible de charger les annonces : '+error.message,'error');$('resultCount').textContent='Chargement indisponible';$('emptyState').style.display='block'}}
     function renderListings(rows){const q=$('searchText').value.trim().toLowerCase();const type=activeQuick||$('typeFilter').value;const max=Number($('budgetFilter').value||0);const data=(rows||allRows).filter(x=>(!q||(`${x.title} ${x.area} ${x.type} ${x.description}`).toLowerCase().includes(q))&&(!type||String(x.type).toLowerCase()===type.toLowerCase())&&(!max||Number(x.price)<=max));$('listingGrid').innerHTML=data.map(cardHtml).join('');$('resultCount').textContent=data.length+' annonce'+(data.length>1?'s':'')+' affichée'+(data.length>1?'s':'');$('emptyState').style.display=data.length?'none':'block'}
-    function cardHtml(x){const contact=currentUser?`<button class="btn small" onclick="contactOwner('${escapeHtml(x.id)}')">Contacter ↗</button>`:`<button class="btn small" onclick="openAuth()">Se connecter pour contacter</button>`;return `<article class="card"><div class="photo"><div class="photo-label">${escapeHtml(x.status||'ANNONCE')}</div></div><div class="cardbody"><div class="price">${money(x.price)} <small>/ mois</small></div><h3>${escapeHtml(x.title||x.type||'Logement à louer')}</h3><div class="location">⌖ ${escapeHtml(x.area)}, ${escapeHtml(x.city||'Yaoundé')}</div><div class="features"><span>⌂ ${escapeHtml(x.type||'Logement')}</span><span>✓ Annonce publiée</span></div><p class="card-desc">${escapeHtml(x.description).slice(0,130)}${String(x.description||'').length>130?'…':''}</p><div class="card-actions">${contact}</div></div></article>`}
+    function cardHtml(x){
+      const image=x.photos?.[0];
+      const photo=image?`<img src="${escapeHtml(image)}" alt="Photo du logement" loading="lazy">`:'<div class="photo-label">PHOTO À VENIR</div>';
+      const contact=currentUser?`<button class="btn small" onclick="contactOwner('${escapeHtml(x.id)}')">Contacter ↗</button>`:`<button class="btn small" onclick="openAuth()">Se connecter pour contacter</button>`;
+      return `<article class="card"><div class="photo">${photo}<div class="photo-label">${escapeHtml(x.status||'ANNONCE')}</div></div><div class="cardbody"><div class="price">${money(x.price)} <small>/ mois</small></div><h3>${escapeHtml(x.title||'Logement à louer')}</h3><div class="location">⌖ ${escapeHtml(x.area)}, ${escapeHtml(x.city)}</div><div class="features"><span>⌂ ${escapeHtml(x.type)}</span><span>📷 ${x.photos.length} photo(s)</span></div><p class="card-desc">${escapeHtml(x.description).slice(0,130)}${String(x.description||'').length>130?'…':''}</p><div class="card-actions">${contact}</div></div></article>`;
+    }
     function contactOwner(id){if(!currentUser){openAuth();return}const row=allRows.find(x=>String(x.id)===String(id));if(!row){showToast('Annonce introuvable.');return}showToast('La fiche est accessible. Les coordonnées de contact seront ajoutées après validation du champ téléphone dans la base.')}
     function applySearch(){if(!currentUser){openAuth();showToast('Connectez-vous pour utiliser les filtres de recherche.');return}renderListings()}
     function quickFilter(type,el){if(!currentUser){openAuth();showToast('Connectez-vous pour filtrer les annonces.');return}activeQuick=type;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');$('typeFilter').value='';renderListings()}
     function resetFilters(){$('searchText').value='';$('typeFilter').value='';$('budgetFilter').value='';activeQuick='';document.querySelectorAll('.chip').forEach((c,i)=>c.classList.toggle('active',i===0));renderListings()}
 
-    $('listingForm').addEventListener('submit',async event=>{event.preventDefault();if(!currentUser){closeModal('listingModal');openAuth();return}const button=$('listingSubmit');button.disabled=true;button.textContent='Envoi en cours…';setStatus('listingFormStatus','Enregistrement de l’annonce…');const payload={ville:$('listingCity').value.trim(),quartier:$('listingArea').value.trim(),prix:Number($('listingPrice').value),type_logement:$('listingType').value,description:$('listingDescription').value.trim(),statut:'disponible',proprietaire_id:currentUser.id};try{const {error}=await supabaseClient.from('logements').insert(payload);if(error)throw error;$('listingForm').reset();$('listingCity').value='Yaoundé';closeModal('listingModal');showToast('Annonce envoyée avec succès.');await loadListings()}catch(error){console.error('Publication logement:',error);setStatus('listingFormStatus','Publication impossible : '+error.message+' — vérifiez les noms de colonnes et les politiques RLS.','error')}finally{button.disabled=false;button.textContent='Envoyer l’annonce'}});
+    async function uploadListingPhotos(files){
+      const urls=[];
+      for(const file of files){
+        if(!file.type.startsWith('image/')) throw new Error('Un des fichiers sélectionnés n’est pas une image.');
+        if(file.size>MAX_PHOTO_BYTES) throw new Error('Chaque photo doit faire 8 Mo maximum.');
+        const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'')||'jpg';
+        const path=`${currentUser.id}/${crypto.randomUUID()}.${ext}`;
+        const {error}=await supabaseClient.storage.from(STORAGE_BUCKET).upload(path,file,{upsert:false,contentType:file.type});
+        if(error) throw error;
+        const {data}=supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(path);
+        if(data?.publicUrl) urls.push(data.publicUrl);
+      }
+      return urls;
+    }
+    $('listingPhotos').addEventListener('change',()=>{
+      const files=[...$('listingPhotos').files];
+      $('photoSelection').textContent=files.length?`${files.length} photo(s) sélectionnée(s) — ${files.map(f=>f.name).join(', ')}`:'Aucune photo sélectionnée.';
+      $('photoPreview').innerHTML='';
+      files.slice(0,MAX_PHOTOS).forEach(file=>{
+        const img=document.createElement('img');img.alt='Aperçu de la photo sélectionnée';
+        const reader=new FileReader();reader.onload=()=>img.src=reader.result;reader.readAsDataURL(file);
+        $('photoPreview').appendChild(img);
+      });
+      if(files.length>MAX_PHOTOS) showToast('Maximum 5 photos. Seules les 5 premières seront utilisées.');
+    });
+    $('listingForm').addEventListener('submit',async event=>{
+      event.preventDefault();
+      if(!currentUser){closeModal('listingModal');openAuth();return}
+      const button=$('listingSubmit');button.disabled=true;button.textContent='Envoi en cours…';
+      setStatus('listingFormStatus','Enregistrement de l’annonce et des photos…');
+      try{
+        const selected=[...$('listingPhotos').files].slice(0,MAX_PHOTOS);
+        const photoUrls=await uploadListingPhotos(selected);
+        // Le schéma fourni ne contient pas de colonne titre, pièces ou téléphone : ces champs ne sont donc pas envoyés.
+        const payload={
+          'Ville':$('listingCity').value.trim(),
+          'Quartier':$('listingArea').value.trim(),
+          'Prix':Number($('listingPrice').value),
+          'Type de logement':$('listingType').value,
+          'Description':$('listingDescription').value.trim(),
+          'Statut':'disponible',
+          'propriétaire_id':currentUser.id,
+          'photos':photoUrls
+        };
+        const {error}=await supabaseClient.from('logements').insert(payload);
+        if(error) throw error;
+        $('listingForm').reset();$('listingCity').value='Yaoundé';$('photoSelection').textContent='Aucune photo sélectionnée.';$('photoPreview').innerHTML='';
+        closeModal('listingModal');showToast('Annonce publiée avec succès.');await loadListings();
+      }catch(error){
+        console.error('Publication logement:',error);
+        setStatus('listingFormStatus','Publication impossible : '+error.message+'. Vérifie les règles RLS et le bucket Storage logements-photos.','error');
+      }finally{button.disabled=false;button.textContent='Envoyer l’annonce'}
+    });
 
-    document.querySelectorAll('.modal').forEach(modal=>modal.addEventListener('click',event=>{if(event.target===modal)closeModal(modal.id)}));document.addEventListener('keydown',event=>{if(event.key==='Escape')document.querySelectorAll('.modal.show').forEach(m=>closeModal(m.id))});$('year').textContent=new Date().getFullYear();supabaseClient.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;const button=$('accountButton');button.textContent=currentUser?'Mon compte':'Se connecter';button.onclick=currentUser?signOut:()=>openAuth();if(document.body.classList.contains('search-mode'))renderListings()});
+    async function loadDashboard(){
+      if(!currentUser){openAuth();return}
+      $('dashboardIdentity').textContent=currentUser.email||'Compte connecté';
+      setStatus('dashboardStatus','Chargement de tes annonces…');
+      $('dashboardListings').innerHTML='<p class="smallmuted">Chargement…</p>';
+      try{
+        const {data,error}=await supabaseClient.from('logements').select('*').eq(DB_FIELDS.owner,currentUser.id).order(DB_FIELDS.created,{ascending:false});
+        if(error) throw error;
+        const rows=(data||[]).map(normalizeRow);
+        $('dashboardListings').innerHTML=rows.length?rows.map(x=>`<div class="dashboard-item"><div><strong>${escapeHtml(x.title)}</strong><div class="smallmuted">${escapeHtml(x.area)} · ${money(x.price)} · ${escapeHtml(x.status)}</div></div><button class="btn danger small" onclick="deleteMyListing('${escapeHtml(x.id)}')">Supprimer</button></div>`).join(''):'<p class="smallmuted">Tu n’as pas encore publié d’annonce.</p>';
+        setStatus('dashboardStatus','');
+      }catch(error){$('dashboardListings').innerHTML='';setStatus('dashboardStatus','Tableau de bord indisponible : '+error.message,'error')}
+    }
+    async function deleteMyListing(id){
+      if(!confirm('Supprimer cette annonce ?'))return;
+      const {error}=await supabaseClient.from('logements').delete().eq(DB_FIELDS.id,id).eq(DB_FIELDS.owner,currentUser.id);
+      if(error){showToast('Suppression impossible : '+error.message);return}
+      showToast('Annonce supprimée.');await loadDashboard();await loadListings();
+    }
+    function openDashboard(){if(!currentUser){openAuth();return}openModal('dashboardModal');loadDashboard()}
+    function openSettings(){if(!currentUser){openAuth();return}closeModal('dashboardModal');$('settingsEmail').value=currentUser.email||'';$('passwordForm').reset();setStatus('settingsStatus','');openModal('settingsModal')}
+    $('passwordForm').addEventListener('submit',async event=>{
+      event.preventDefault();
+      const password=$('newPassword').value;
+      if(password.length<8){setStatus('settingsStatus','Le mot de passe doit contenir au moins 8 caractères.','error');return}
+      $('passwordSave').disabled=true;$('passwordSave').textContent='Modification…';
+      const {error}=await supabaseClient.auth.updateUser({password});
+      $('passwordSave').disabled=false;$('passwordSave').textContent='Modifier le mot de passe';
+      if(error){setStatus('settingsStatus','Modification impossible : '+error.message,'error');return}
+      $('passwordForm').reset();setStatus('settingsStatus','Mot de passe modifié avec succès.','success');
+    });
+    function openLegal(){openModal('legalModal')}
+
+    document.querySelectorAll('.modal').forEach(modal=>modal.addEventListener('click',event=>{if(event.target===modal)closeModal(modal.id)}));document.addEventListener('keydown',event=>{if(event.key==='Escape')document.querySelectorAll('.modal.show').forEach(m=>closeModal(m.id))});$('year').textContent=new Date().getFullYear();supabaseClient.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;const button=$('accountButton');button.textContent=currentUser?'Mon tableau de bord':'Se connecter';button.title=currentUser?'Ouvrir votre tableau de bord':'Connectez-vous pour accéder au tableau de bord et aux paramètres';button.onclick=currentUser?openDashboard:()=>openAuth();if(document.body.classList.contains('search-mode'))renderListings()});
     (async()=>{await refreshUser();})();
   </script>
 </body>

@@ -124,12 +124,11 @@
     const SUPABASE_ANON_KEY = 'sb_publishable_9L4R1Rvb2mHg1xevvKoP2Q_G7CFdmZm';
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    // Noms de colonnes attendus dans la table logements.
-    // À comparer avec les noms exacts de la table Supabase avant la première publication.
+    // Noms de colonnes de logements : id et owner_id ont été confirmés dans Supabase.
     const DB_FIELDS = {
-      id:'identifiant', created:'Créé_à', city:'Ville', description:'Description',
+      id:'id', created:'Créé_à', city:'Ville', description:'Description',
       area:'Quartier', price:'Prix', type:'Type de logement', status:'Statut',
-      owner:'Propriétaire _id', photos:'photos', updated:'mis à jour_à'
+      owner:'owner_id', photos:'photos', updated:'mis à jour_à'
     };
     const STORAGE_BUCKET = 'logements-photos';
     const MAX_PHOTOS = 5;
@@ -228,7 +227,7 @@
           'Type de logement':$('listingType').value,
           'Description':$('listingDescription').value.trim(),
           'Statut':'disponible',
-          'Propriétaire _id':currentUser.id,
+          owner_id:currentUser.id,
           'photos':photoUrls
         };
         const {error}=await supabaseClient.from('logements').insert(payload);

@@ -1,0 +1,29 @@
+IMMO+ — PACK FINAL
+
+FICHIERS DU SITE À TÉLÉVERSER À LA RACINE DU DÉPÔT GITHUB PAGES
+1. index.html (remplace l'ancien fichier index.html)
+2. site.webmanifest
+3. immo-plus-icon.svg
+4. immo-plus-icon-192.png
+5. immo-plus-icon-512.png
+
+CONFIGURATION SUPABASE OBLIGATOIRE
+Le fichier immo-plus-supabase-final.sql complète la base pour les historiques de consultation, demandes, signalements, rôles et fonctions d'administration.
+Dans Supabase > SQL Editor, ouvre une nouvelle requête, colle le contenu du fichier SQL et exécute-le sur le projet Immo+ avant de tester les nouvelles fonctions.
+
+POINTS IMPORTANTS
+- Le code utilise le projet Supabase ckpcapndbsjmkhshyowg et la clé publishable déjà configurée. Ne remplace jamais cette clé par une clé secrète/service_role.
+- Le bucket attendu par le code est exactement logements-photos (minuscules). Le SQL le crée s'il n'existe pas et le rend public ; il ne supprime pas le bucket avec un L majuscule.
+- Le rôle administrateur déjà attribué dans profiles.type_compte='admin' est conservé.
+- Les fonctions d'historique, demandes, signalements, administration des utilisateurs et statistiques nécessitent l'exécution du SQL.
+- Le code utilise id et owner_id pour la table logements. Les autres noms de colonnes utilisés sont ceux du fichier de site existant (Ville, Quartier, Prix, Type de logement, Description, Statut, photos).
+- L'étape 6/8 n'est pas déclarée validée : le problème de nom de colonne de date doit encore être vérifié. Le chargement des annonces du nouveau fichier ne trie pas sur cette colonne incertaine.
+
+DÉPLOIEMENT GITHUB PAGES
+1. Ouvre le dépôt GitHub du site.
+2. Téléverse les 5 fichiers du site ci-dessus à la racine du dépôt.
+3. Remplace l'ancien index.html par le nouveau.
+4. Clique sur Commit changes.
+5. Attends le déploiement GitHub Pages puis recharge le site.
+
+Le fichier SQL ne doit pas être téléversé comme page du site : il doit être exécuté dans Supabase SQL Editor.
